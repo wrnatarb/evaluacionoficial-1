@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>📝 Evaluación N°1</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <p>
+                <a href="index.html">Hola</a>
+                <a href="page-1.html" class="activo">Caleidoscopio</a>
+                <a href="page-2.html">Condiciones</a>
+                <a href="page-3.html">Poema Aleatorio</a>
+                <a href="page-4.html">Orbit Control</a>
+                <a href="page-5.html">Apuntar</a>
+            </p>
+            <h1>Caleidoscopio</h1>
+        </header>
+        <main></main>
+        <!--active este botón-->
+        <aside>
+            <button onclick="foto()">🖼️ DESCARGA</button>
+          
+        </aside>
+        <!-- Lo que sigue depende de usted -->
+        <script>
+            function setup() {
+                createCanvas(windowWidth, windowHeight);
+                //repita un mismo background en el style.css y en todos los script
+                background("#292929");
+            }
+
+            function draw() {
+            }
+
+            function foto() {
+                saveCanvas("caleidoscopio.jpg");
+            }
+
+
+            function windowResized() {
+                //repita un mismo background en el style.css y en todos los script
+                background("#2962FF");
+                resizeCanvas(windowWidth, windowHeight);
+            }
+            // Define the global variables.
+// The symmetry variable will define how many reflective sections the canvas
+// is split into.
+let symmetry = 6;
+
+// The angle button will calculate the angle at which each section is rotated.
+let angle = 360 / symmetry;
+
+function setup() {
+  describe(
+    `Dark grey canvas that reflects the lines drawn within it in ${symmetry} sections.`
+  );
+  createCanvas(windowWidth, windowHeight);
+  angleMode(DEGREES);
+  background("#2962FF");
+}
+
+function draw() {
+  // Move the 0,0 coordinates of the canvas to the center, instead of in
+  // the top left corner.
+  translate(width / 2, height / 2);
+
+  // If the cursor is within the limits of the canvas...
+  if (mouseX > 0 && mouseX < width && mouseY > 0 && mouseY < height) {
+    // Translate the current position and the previous position of the
+    // cursor to the new coordinates set with the translate() function above.
+    let lineStartX = mouseX - width / 2;
+    let lineStartY = mouseY - height / 2;
+    let lineEndX = pmouseX - width / 2;
+    let lineEndY = pmouseY - height / 2;
+
+    // And, if the mouse is pressed while in the canvas...
+    if (mouseIsPressed === true) {
+      // For every reflective section the canvas is split into, draw the cursor's
+      // coordinates while pressed...
+      for (let i = 0; i < symmetry; i++) {
+        rotate(angle);
+        stroke("#1A237E");
+        strokeWeight(1);
+        line(lineStartX, lineStartY, lineEndX, lineEndY);
+
+        // ... and reflect the line within the symmetry sections as well.
+        push();
+        scale(1, -1);
+        line(lineStartX, lineStartY, lineEndX, lineEndY);
+        pop();
+      }
+    }
+  }
+}
+        </script>
+    </body>
+</html>

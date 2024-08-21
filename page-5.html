@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>📝 Evaluación N°1</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <p>
+                <a href="index.html">Hola</a>
+                <a href="page-1.html">Caleidoscopio</a>
+                <a href="page-2.html">Condiciones</a>
+                <a href="page-3.html">Poema Aleatorio</a>
+                <a href="page-4.html">Orbit Control</a>
+                <a href="page-5.html"class="activo">Apuntar</a>
+            </p>
+            <h1>Apuntar</h1>
+        </header>
+        <main></main>
+        <!--active este botón-->
+        <aside>
+            <button onclick="foto()">🖼️ DESCARGA</button>
+          
+        </aside>
+        <!-- Lo que sigue depende de usted -->
+        <script>
+            function setup() {
+                createCanvas(windowWidth, windowHeight);
+                //repita un mismo background en el style.css y en todos los script
+                background("2962FF");
+            }
+
+            function draw() {
+            }
+
+            function foto() {
+                saveCanvas("apuntar.jpg");
+            }
+
+            
+
+
+            function windowResized() {
+                //repita un mismo background en el style.css y en todos los script
+                background("#2962FF");
+                resizeCanvas(windowWidth, windowHeight);
+            }
+            function setup() {
+  createCanvas(windowWidth, windowHeight);
+  colorMode(HSB);
+
+  // Set angle mode so that atan2() returns angles in degrees
+  angleMode(DEGREES);
+
+  describe('Two eyes that follow the cursor.');
+}
+
+function draw() {
+  background("#2962FF");
+
+  // Draw left eye
+
+  let leftX = 150;
+  let leftY = 200;
+
+  // Calculate angle between left eye and mouse
+  let leftAngle = atan2(mouseY - leftY, mouseX - leftX);
+
+  push();
+  translate(leftX, leftY);
+  fill(255);
+  ellipse(0, 0, 50, 50);
+  rotate(leftAngle);
+  fill(0);
+  ellipse(12.5, 0, 25, 25);
+  pop();
+
+  // Draw right eye
+
+  let rightX = 250;
+  let rightY = 200;
+
+  // Calculate angle between right eye and angle
+  let rightAngle = atan2(mouseY - rightY, mouseX - rightX);
+
+  push();
+  translate(rightX, rightY);
+  fill(255);
+  ellipse(0, 0, 50, 50);
+  rotate(rightAngle);
+  fill(0);
+  ellipse(12.5, 0, 25, 25);
+  pop();
+}
+        </script>
+    </body>
+</html>

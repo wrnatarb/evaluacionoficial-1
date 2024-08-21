@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8" />
+        <title>📝 Evaluación N°1</title>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.js"></script>
+        <link rel="stylesheet" href="style.css" />
+    </head>
+    <body>
+        <header>
+            <p>
+                <a href="index.html">Hola</a>
+                <a href="page-1.html">Caleidoscopio</a>
+                <a href="page-2.html">Condiciones</a>
+                <a href="page-3.html">Poema Aleatorio</a>
+                <a href="page-4.html"class="activo">Orbit Control</a>
+                <a href="page-5.html">Apuntar</a>
+            </p>
+            <h1>Orbit Control</h1>
+        </header>
+        <main></main>
+        <!--active este botón-->
+        <aside>
+            <button onclick="foto()">🖼️ DESCARGA</button>
+          
+        </aside>
+        <!-- Lo que sigue depende de usted -->
+        <script>
+            function setup() {
+                createCanvas(windowWidth, windowHeight);
+                //repita un mismo background en el style.css y en todos los script
+                background("#292929");
+            }
+
+            function draw() {
+            }
+
+            function foto() {
+                saveCanvas("orbit-control.jpg");
+            }
+
+            
+
+
+            function windowResized() {
+                //repita un mismo background en el style.css y en todos los script
+                background("#292929");
+                resizeCanvas(windowWidth, windowHeight);
+            }
+            function setup() {
+  createCanvas(710, 400, WEBGL);
+  createCanvas(windowWidth, windowHeight);
+  angleMode(DEGREES);
+  strokeWeight(1);
+  noFill();
+  stroke("#1A237E");
+  describe(
+    'Users can click on the screen and drag to adjust their perspective in 3D space. The space contains a sphere of dark purple cubes on a light pink background.'
+  );
+}
+
+function draw() {
+  background("#2962FF");
+
+  // Call every frame to adjust camera based on mouse/touch
+  orbitControl();
+
+  // Rotate rings in a half circle to create a sphere of cubes
+  for (let zAngle = 0; zAngle < 180; zAngle += 30) {
+    // Rotate cubes in a full circle to create a ring of cubes
+    for (let xAngle = 0; xAngle < 360; xAngle += 30) {
+      push();
+
+      // Rotate from center of sphere
+      rotateZ(zAngle);
+      rotateX(xAngle);
+
+      // Then translate down 400 units
+      translate(0, 400, 0);
+      box();
+      pop();
+    }
+  }
+}
+        </script>
+    </body>
+</html>
